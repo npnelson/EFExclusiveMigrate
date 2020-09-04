@@ -7,16 +7,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{20C61DE6-D49
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetToolBox.EFExclusiveMigrate.Core", "src\NetToolBox.EFExclusiveMigrate.Core\NetToolBox.EFExclusiveMigrate.Core.csproj", "{3BF17943-835D-49D2-8783-06E7E169A10A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetToolBox.EFExclusiveMigrate.AspNetCore", "src\NetToolBox.EFExclusiveMigrate.AspNetCore\NetToolBox.EFExclusiveMigrate.AspNetCore.csproj", "{471855CD-BFEC-415F-97F2-B0185076CF16}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetToolBox.EFExclusiveMigrate.AzureFunctions", "src\NetToolBox.EFExclusiveMigrate.AzureFunctions\NetToolBox.EFExclusiveMigrate.AzureFunctions.csproj", "{9FBEC65F-479F-47CD-AC60-24526775AEAA}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6EB96937-6016-43CD-8FD7-EBEFBA4A5B7A}"
 	ProjectSection(SolutionItems) = preProject
 		azure-pipelines.yml = azure-pipelines.yml
 		.config\dotnet-tools.json = .config\dotnet-tools.json
 		GitVersion.yml = GitVersion.yml
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{50F039E1-276A-474A-9C0C-56CE4EE8916C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFMigrate.TestHarness", "test\EFMigrate.TestHarness\EFMigrate.TestHarness.csproj", "{8C289D65-02A8-47B3-AC74-3A5B98D49129}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,22 +28,17 @@ Global
 		{3BF17943-835D-49D2-8783-06E7E169A10A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3BF17943-835D-49D2-8783-06E7E169A10A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3BF17943-835D-49D2-8783-06E7E169A10A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{471855CD-BFEC-415F-97F2-B0185076CF16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{471855CD-BFEC-415F-97F2-B0185076CF16}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{471855CD-BFEC-415F-97F2-B0185076CF16}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{471855CD-BFEC-415F-97F2-B0185076CF16}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9FBEC65F-479F-47CD-AC60-24526775AEAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9FBEC65F-479F-47CD-AC60-24526775AEAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9FBEC65F-479F-47CD-AC60-24526775AEAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9FBEC65F-479F-47CD-AC60-24526775AEAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C289D65-02A8-47B3-AC74-3A5B98D49129}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C289D65-02A8-47B3-AC74-3A5B98D49129}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C289D65-02A8-47B3-AC74-3A5B98D49129}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C289D65-02A8-47B3-AC74-3A5B98D49129}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{3BF17943-835D-49D2-8783-06E7E169A10A} = {20C61DE6-D492-4A13-8545-FE04324E3FD5}
-		{471855CD-BFEC-415F-97F2-B0185076CF16} = {20C61DE6-D492-4A13-8545-FE04324E3FD5}
-		{9FBEC65F-479F-47CD-AC60-24526775AEAA} = {20C61DE6-D492-4A13-8545-FE04324E3FD5}
+		{8C289D65-02A8-47B3-AC74-3A5B98D49129} = {50F039E1-276A-474A-9C0C-56CE4EE8916C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E076F8EE-98BA-4AA4-9E6F-521D71838BCA}
