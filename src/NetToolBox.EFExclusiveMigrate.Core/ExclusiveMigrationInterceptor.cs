@@ -60,6 +60,8 @@ namespace NetToolBox.EFExclusiveMigrate.Core
                 //need this, because script contains "GO" statement for each migration that leads to execution error
                 migrationSql = migrationSql.Replace("\r\nGO\r\n", "");
 
+                migrationSql = migrationSql.Replace("\nGO\n", ""); //catch the linux variant for line endings
+
                 dbContext.Database.ExecuteSqlRaw(migrationSql);
                 logger.LogInformation("Database successfully migrated");
                 _migrationSuccessfullyCheckedAndAppliedIfNeeded = true;
