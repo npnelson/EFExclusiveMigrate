@@ -44,18 +44,27 @@ namespace NetToolBox.EFExclusiveMigrate.Core
                                                                                                                     //there is also an edge case that the attempt to grab the lock times out, if that happens, it will throw an exception and the app will need to be restarted, that could get ugly
                 logger.LogInformation("Exclusive database lock obtained");
 
-                if (!dbContext.Database.GetPendingMigrations().Any()) //check again in case another process was able to apply the migration, although the exclusive lock obtained earlier should prevent anyone else from even checking
+                var pendingMigrations = dbContext.Database.GetPendingMigrations();
+                if (!pendingMigrations.Any()) //check again in case another process was able to apply the migration, although the exclusive lock obtained earlier should prevent anyone else from even checking
                 {
                     logger.LogInformation("No Migrations Available, it must have been migrated by another process between the last check and the exclusive lock obtained by this process");
                     _migrationSuccessfullyCheckedAndAppliedIfNeeded = true;
                     dbTran.Rollback();
                     return;
                 }
-
+                var allMigrations = dbContext.Database.GetMigrations().ToArray();
+                string startingMigration = string.Empty;
+                for (var counter = allMigrations.Length - 1; counter != 0; counter = counter - 1)
+                {
+                    if (allMigrations[counter] == pendingMigrations.First())
+                    {
+                        startingMigration = allMigrations[counter - 1];
+                    }
+                }
                 //https://github.com/dotnet/efcore/issues/6322#issuecomment-458555963 https://github.com/dotnet/efcore/issues/12325 --migrate still doesn't work quite right with transactions even in EF 5 - they will eventually fix it, but for now, we need to generate our own script
                 //also watch out for ef core 5.0 rc1, we might need to do something different with the script https://github.com/dotnet/efcore/issues/7681
 
-                var migrationSql = dbContext.GetService<IMigrator>().GenerateScript(null, null, true);
+                var migrationSql = dbContext.GetService<IMigrator>().GenerateScript(startingMigration, pendingMigrations.Last(), false);
 
                 //need this, because script contains "GO" statement for each migration that leads to execution error
                 migrationSql = migrationSql.Replace("\r\nGO\r\n", "");
